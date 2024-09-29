@@ -1,0 +1,20 @@
+<h3>Componente Cocina</h3>
+<h4>Pendiente de cocinar</h4>
+<!--Lista pendientes cocinar--> <!--Button Cocinar-->
+@for(pedido of pedidosForCook; track pedido; let index=$index){
+    <div>
+        *({{pedido.number}}) - {{pedido.description}} 
+        <button (click)="toCook(pedido)"
+        [disabled]="pedidoInCook !==null"><!--Lo deshabilita si hay en cook-->
+            Cocinar
+        </button>
+    </div>
+}
+
+<h4>Pedidos en cocción</h4>
+<!--Pedido coccion-->
+<!--Button Pedido Terminado!-->
+<div *ngIf="pedidoInCook" >
+    <p>*({{pedidoInCook.number}}) - {{pedidoInCook.description}}</p>
+    <button (click)="toDelivery(pedidoInCook)">Pedido Terminado!</button>
+</div>

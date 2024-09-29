@@ -1,0 +1,8 @@
+<p>Pedidos listos para entregar</p>
+<!--Lista de pedidos listos con button entregar-->
+@for(pedido of pedidosForDeliver; track pedido; let index=$index){
+    <div>
+        *({{pedido.number}}) - {{pedido.description}}
+        <button (click)="delivered(pedido)">Entregar!</button>
+    </div>   
+}

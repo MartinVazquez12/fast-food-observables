@@ -1,0 +1,26 @@
+
+<h3>Componente Point of Sell - POS</h3>
+<!--Formulario nombre y pedido. Boton ordenar-->
+<form #form="ngForm" (ngSubmit)="save(form)">
+    <div>
+        <span>Nombre</span>
+    <input type="text" name="name" id="name"
+        #name="ngModel" 
+        required
+        [(ngModel)]="pedido.name">
+    @if(name.invalid && name.touched){
+        <span class="error">Ingrese su nombre</span>
+    }
+    </div>
+    <div>
+        <span>Pedido</span>
+    <input type="text" name="description" id="description"
+        #description="ngModel" 
+        required
+        [(ngModel)]="pedido.description">
+        @if(description.invalid && description.touched){
+            <span class="error">Ingrese su pedido</span>
+        }
+    </div>
+    <button type="submit">Ordenar</button>
+</form>

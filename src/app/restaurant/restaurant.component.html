@@ -1,0 +1,22 @@
+<h1>Restaurant FastFood</h1>
+<p>Pedidos Ingresados</p>
+<!--Lista de pedidos-->
+[
+@for(pedido of pedidosIng; track pedido; let index=$index){
+    <span>"nombre": "{{pedido.name}}", 
+        "descripcion": "{{pedido.description}}", 
+        "numero": {{pedido.number}} ,
+    </span>
+}
+]
+
+<!--Con el nombre puedo ejecutar metodos desde componentes hermanos-->
+<!--cuando se ejecute el EventEmitter, actualizame los pedidos-->
+<app-delivery-point #delivery (onDeliver)="subscribePedidos()"></app-delivery-point>
+
+<p>POS - Point of Sell</p>
+<!--Cuando escucho el evento del hijo, de su eventEmitter, le digo que ejecute el load-->
+<app-pos (onSave)="subscribePedidos(); kitchen.subscribePedidos()" ></app-pos>
+
+<!--Le agrego nombre para que al hacer onSave tambien actualize aca-->
+<app-kitchen #kitchen (onSaveToDelivery)="delivery.subscribeToDelivery()"></app-kitchen>
